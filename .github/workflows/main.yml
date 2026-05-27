@@ -9,15 +9,27 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Build APK with Buildozer
-      uses: ArtemSBulgakov/buildozer-action@v1
-      id: buildozer
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        command: buildozer android debug
-        buildozer_version: stable
+        python-version: '3.10'
+
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ccache git libffi-dev libssl-dev autoconf automake libtool pkg-config cmake python3-pip textwrap3 openjdk-17-jdk-headless zip unzip
+
+    - name: Install Buildozer and Cython
+      run: |
+        pip install --upgrade pip
+        pip install buildozer cython virtualenv textwrap3
+
+    - name: Build APK with Buildozer
+      run: |
+        yes | buildozer -v android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: calorie-tracker-apk
-        path: ${{ steps.buildozer.outputs.filename }}
+        path: bin/*.apk
