@@ -19,8 +19,8 @@ source.include_exts = py,png,jpg,kv,atlas
 version = 1.0
 
 # (list) Application requirements
-# Оставили только базовые компоненты, чтобы сборщик в облаке не падал на SSL-библиотеках
-requirements = python3,kivy
+# Жестко фиксируем стабильную версию Kivy для корректной сборки с NDK 25b
+requirements = python3,kivy==2.3.0
 
 # (str) Supported orientations (valid options are: landscape, portrait, all)
 orientation = portrait
