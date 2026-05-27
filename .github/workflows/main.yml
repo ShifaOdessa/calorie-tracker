@@ -19,14 +19,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ccache git libffi-dev libssl-dev autoconf automake libtool libtool-bin pkg-config cmake python3-pip openjdk-17-jdk-headless zip unzip
 
-    - name: Install Buildozer and Cython
+    - name: Install Buildozer (Master Branch) and Cython
       run: |
         pip install --upgrade pip
-        pip install "cython<3.0.0" buildozer virtualenv textwrap3
-
-    - name: Clean Buildozer Cache
-      run: |
-        buildozer android clean
+        pip install "cython<3.0.0" virtualenv textwrap3
+        # Устанавливаем самую свежую версию Buildozer напрямую от разработчиков, где исправлен баг с libffi
+        pip install git+https://github.com/kivy/buildozer.git@master
 
     - name: Build APK with Buildozer
       run: |
