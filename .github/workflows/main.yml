@@ -3,7 +3,6 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    # Переключаем сервер на стабильную версию Ubuntu, где нет конфликтов с макросами
     runs-on: ubuntu-22.04
 
     steps:
@@ -23,7 +22,7 @@ jobs:
     - name: Install Buildozer and Cython
       run: |
         pip install --upgrade pip
-        pip install "cython<3.0.0" buildozer virtualenv textwrap3
+        pip install Cython buildozer virtualenv textwrap3
 
     - name: Build APK with Buildozer
       run: |
