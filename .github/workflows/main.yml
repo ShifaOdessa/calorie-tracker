@@ -24,6 +24,10 @@ jobs:
         pip install --upgrade pip
         pip install "cython<3.0.0" buildozer virtualenv textwrap3
 
+    - name: Clean Buildozer Cache
+      run: |
+        buildozer android clean
+
     - name: Build APK with Buildozer
       run: |
         export BUILDOZER_WARN_ON_ROOT=0
