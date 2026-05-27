@@ -20,7 +20,7 @@ version = 1.0
 
 # (list) Application requirements
 # Жестко фиксируем стабильную версию Kivy для корректной сборки с NDK 25b
-requirements = python3==3.11.9,kivy==2.3.0
+requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0
 
 # (str) Supported orientations (valid options are: landscape, portrait, all)
 orientation = portrait
