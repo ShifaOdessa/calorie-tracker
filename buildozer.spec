@@ -19,11 +19,18 @@ source.include_exts = py,png,jpg,kv,atlas
 version = 1.0
 
 # (list) Application requirements
-# Жестко фиксируем стабильную версию Kivy для корректной сборки с NDK 25b
+# Жестко фиксируем стабильную версию Kivy и Python для корректной сборки
 requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0
 
 # (str) Supported orientations (valid options are: landscape, portrait, all)
 orientation = portrait
+
+# =============================================================================
+# Python-for-android specific configurations
+# =============================================================================
+
+# Указываем самую свежую ветку разработчиков, чтобы обойти ошибку с новыми версиями pip
+p4a.branch = develop
 
 # =============================================================================
 # Android specific configurations
