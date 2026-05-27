@@ -42,14 +42,14 @@ fullscreen = 1
 # (list) Permissions
 android.permissions = INTERNET
 
-# (int) Target Android API, should be as high as possible.
-android.api = 33
+# Обновляем API и NDK для совместимости с веткой develop
+android.api = 34
 
 # (int) Minimum API your APK will support.
 android.minapi = 21
 
 # (str) Android NDK version to use
-android.ndk = 25b
+android.ndk = 26b
 
 # (bool) If True, then skip trying to update the Android sdk
 android.skip_update = False
