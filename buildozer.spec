@@ -7,34 +7,33 @@ title = Calorie Tracker
 package.name = calorietracker
 
 # (str) Package domain (needed for android packaging)
-package.domain = org.alexshevchenko
+package.domain = org.shifaodessa
 
-# (str) Source code directory
+# (str) Source code where the main.py lives
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,json
+source.include_exts = py,png,jpg,kv,atlas
 
 # (str) Application versioning (method 1)
 version = 1.0
 
 # (list) Application requirements
-# comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,openssl,requests,urllib3
+# Оставили только базовые компоненты, чтобы сборщик в облаке не падал на SSL-библиотеках
+requirements = python3,kivy
 
 # (str) Supported orientations (valid options are: landscape, portrait, all)
 orientation = portrait
 
+# =============================================================================
+# Android specific configurations
+# =============================================================================
+
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 0
+fullscreen = 1
 
-# =============================================================================
-# Android specific configuration
-# =============================================================================
-
-# (list) Permissions required by the app
-# Включаем интернет (для ИИ) и доступ к хранилищу (для сохранения профиля)
-android.permissions = INTERNET, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
+# (list) Permissions
+android.permissions = INTERNET
 
 # (int) Target Android API, should be as high as possible.
 android.api = 33
@@ -45,25 +44,21 @@ android.minapi = 21
 # (str) Android NDK version to use
 android.ndk = 25b
 
-# (bool) If True, then skip trying to update the Android sdk automatically
+# (bool) If True, then skip trying to update the Android sdk
 android.skip_update = False
 
-# (bool) If True, then automatically accept SDK license agreements
+# (bool) If True, then automatically accept SDK license
 android.accept_sdk_license = True
 
-# (list) The Android architectures to build for
-# Сборка под большинство современных телефонов
+# (str) The Android architecturalis to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 android.archs = arm64-v8a, armeabi-v7a
 
-# (bool) Allow data backup
+# (bool) Use allow backup
 android.allow_backup = True
 
-# (str) Format used to package the app for release mode (aab or apk)
-android.release_artifact = apk
-
-# (str) Format used to package the app for debug mode (apk or aar)
-android.debug_artifact = apk
-
+# =============================================================================
+# Buildozer configurations
+# =============================================================================
 
 [buildozer]
 
@@ -71,4 +66,4 @@ android.debug_artifact = apk
 log_level = 2
 
 # (int) Display warning if buildozer is run as root (0 = False, 1 = True)
-warn_on_root = 1
+warn_on_root = 0
