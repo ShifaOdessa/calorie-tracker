@@ -17,7 +17,7 @@ jobs:
     - name: Install System Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y ccache git libffi-dev libssl-dev autoconf automake libtool pkg-config cmake python3-pip textwrap3 openjdk-17-jdk-headless zip unzip
+        sudo apt-get install -y ccache git libffi-dev libssl-dev autoconf automake libtool pkg-config cmake python3-pip openjdk-17-jdk-headless zip unzip
 
     - name: Install Buildozer and Cython
       run: |
@@ -26,6 +26,7 @@ jobs:
 
     - name: Build APK with Buildozer
       run: |
+        export BUILDOZER_WARN_ON_ROOT=0
         yes | buildozer -v android debug
 
     - name: Upload APK Artifact
