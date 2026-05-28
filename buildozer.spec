@@ -12,56 +12,42 @@ package.domain = org.shifaodessa
 # (str) Source code where the main.py lives
 source.dir = .
 
-# (list) Source files to include (let empty to include all the files)
+# (list) Source files to include
 source.include_exts = py,png,jpg,kv,atlas
 
-# (str) Application versioning (method 1)
+# (str) Application versioning
 version = 1.0
 
 # (list) Application requirements
-# Жестко фиксируем стабильную версию Kivy и Python для корректной сборки
+# Оставляем только самое необходимое
 requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0
 
-# (str) Supported orientations (valid options are: landscape, portrait, all)
+# (str) Supported orientations
 orientation = portrait
 
 # =============================================================================
 # Python-for-android specific configurations
 # =============================================================================
 
-# Указываем самую свежую ветку разработчиков, чтобы обойти ошибку с новыми версиями pip
+# Используем ветку develop, чтобы обойти баги с новыми версиями pip
 p4a.branch = develop
 
 # =============================================================================
 # Android specific configurations
 # =============================================================================
 
-# (bool) Indicate if the application should be fullscreen or not
 fullscreen = 1
-
-# (list) Permissions
 android.permissions = INTERNET
-
-# Обновляем API и NDK для совместимости с веткой develop
 android.api = 34
-
-# (int) Minimum API your APK will support.
 android.minapi = 21
-
-# (str) Android NDK version to use
 android.ndk = 26b
-
-# (bool) If True, then skip trying to update the Android sdk
 android.skip_update = False
-
-# (bool) If True, then automatically accept SDK license
 android.accept_sdk_license = True
-
-# (str) The Android architecturalis to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 android.archs = arm64-v8a, armeabi-v7a
-
-# (bool) Use allow backup
 android.allow_backup = True
+
+# Исключаем проблемные графические библиотеки, которые вызывают ошибки сборки
+p4a.local_recipes = 
 
 # =============================================================================
 # Buildozer configurations
@@ -69,8 +55,6 @@ android.allow_backup = True
 
 [buildozer]
 
-# (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
+# Устанавливаем уровень 2, чтобы видеть все детали сборки
 log_level = 2
-
-# (int) Display warning if buildozer is run as root (0 = False, 1 = True)
 warn_on_root = 0
