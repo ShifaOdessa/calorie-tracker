@@ -3,6 +3,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
+    # Стабильная среда, где меньше всего конфликтов с системными утилитами
     runs-on: ubuntu-22.04
 
     steps:
@@ -12,22 +13,28 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.11'
 
     - name: Install System Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y ccache git libffi-dev libssl-dev autoconf automake libtool pkg-config cmake python3-pip openjdk-17-jdk-headless zip unzip
+        sudo apt-get install -y \
+          ccache git libffi-dev libssl-dev autoconf automake libtool libtool-bin \
+          pkg-config cmake python3-pip openjdk-17-jdk-headless zip unzip \
+          zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5
 
-    - name: Install Buildozer and Cython
+    - name: Install Buildozer and Toolchain
       run: |
         pip install --upgrade pip
-        pip install Cython buildozer virtualenv textwrap3
+        pip install Cython virtualenv textwrap3
+        # Устанавливаем актуальную версию buildozer напрямую из репозитория
+        pip install git+https://github.com/kivy/buildozer.git@master
 
     - name: Build APK with Buildozer
       run: |
         export BUILDOZER_WARN_ON_ROOT=0
-        yes | buildozer -v android debug
+        # Флаг --no-compile-pyc исключает ошибки при компиляции байт-кода
+        yes | buildozer -v android debug --no-compile-pyc
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
